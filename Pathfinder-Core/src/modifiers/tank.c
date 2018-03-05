@@ -19,17 +19,27 @@ void pathfinder_modify_tank(Segment *original, int length, Segment *left_traj, S
         right.y = seg.y - (w * cos_angle);
 
         if (i > 0) {
+            Segment last_seg = original[i - 1];
             Segment last_left = left_traj[i - 1];
+            Segment last_right = right_traj[i - 1];
+
             double left_distance = sqrt(
                 (left.x - last_left.x) * (left.x - last_left.x)
                 + (left.y - last_left.y) * (left.y - last_left.y)
             );
+            if ((last_seg.x > seg.x && last_left.x < left.x) || (last_seg.y > seg.y && last_left.y < left.y) ||
+                (last_seg.x < seg.x && last_left.x > left.x) || (last_seg.y < seg.y && last_left.y > left.y)) {
+                    left_distance = -left_distance;
+            }
 
-            Segment last_right = right_traj[i - 1];
             double right_distance = sqrt(
                 (right.x - last_right.x) * (right.x - last_right.x)
                 + (right.y - last_right.y) * (right.y - last_right.y)
             );
+            if ((last_seg.x > seg.x && last_right.x < left.x) || (last_seg.y > seg.y && last_right.y < left.y) ||
+                 (last_seg.x < seg.x && last_right.x > left.x) || (last_seg.y < seg.y && last_right.y > left.y)) {
+                     right_distance = -right_distance;
+             }
 
             left.position = last_left.position + left_distance;
             left.velocity = left_distance / seg.dt;
