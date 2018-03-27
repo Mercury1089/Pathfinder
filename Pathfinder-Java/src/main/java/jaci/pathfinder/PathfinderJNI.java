@@ -10,7 +10,7 @@ public class PathfinderJNI {
     static {
         if (!libLoaded) {
             try {
-                System.loadLibrary("pathfinderjava");
+                NativeUtils.loadLibraryFromJar("/any64/pathfinderjava.dll");
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,7 +1,7 @@
 apply plugin: 'c'
 
 def nativeDir = 'src/native'
-def sharedArtifactDir = 'build/libs/pathfinderjava/shared/platform'
+def sharedArtifactDir = 'build/libs/pathfinderjava/shared/'
 def exportDir = 'src/main/resources'
 def armJNI = '../arm-linux'
 if (project.hasProperty('armJNI')) armJNI = project.armJNI

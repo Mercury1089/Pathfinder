@@ -1,0 +1,9 @@
+﻿  Starting a Gradle Daemon, 1 stopped Daemon could not be reused, use --status for details
+  Configuration on demand is an incubating feature.
+  :Pathfinder-Core:dependPathfinderRoborioStaticLibraryPathfinderC UP-TO-DATE
+  :Pathfinder-Core:compilePathfinderRoborioStaticLibraryPathfinderC UP-TO-DATE
+  :Pathfinder-Core:createPathfinderRoborioStaticLibrary UP-TO-DATE
+  :Pathfinder-Core:pathfinderRoborioStaticLibrary UP-TO-DATE
+  
+  BUILD SUCCESSFUL in 7s
+  3 actionable tasks: 3 up-to-date
