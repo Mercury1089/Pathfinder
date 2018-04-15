@@ -36,8 +36,8 @@ void pathfinder_modify_tank(Segment *original, int length, Segment *left_traj, S
                 (right.x - last_right.x) * (right.x - last_right.x)
                 + (right.y - last_right.y) * (right.y - last_right.y)
             );
-            if ((last_seg.x > seg.x && last_right.x < left.x) || (last_seg.y > seg.y && last_right.y < left.y) ||
-                 (last_seg.x < seg.x && last_right.x > left.x) || (last_seg.y < seg.y && last_right.y > left.y)) {
+            if ((last_seg.x > seg.x && last_right.x < right.x) || (last_seg.y > seg.y && last_right.y < right.y) ||
+                (last_seg.x < seg.x && last_right.x > right.x) || (last_seg.y < seg.y && last_right.y > right.y)) {
                      right_distance = -right_distance;
              }
 
