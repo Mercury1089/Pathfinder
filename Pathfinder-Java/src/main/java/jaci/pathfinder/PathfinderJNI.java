@@ -3,6 +3,8 @@ package jaci.pathfinder;
 import jaci.pathfinder.followers.EncoderFollower;
 import jaci.pathfinder.modifiers.SwerveModifier;
 
+import java.io.IOException;
+
 public class PathfinderJNI {
 
     static boolean libLoaded = false;
@@ -10,8 +12,27 @@ public class PathfinderJNI {
     static {
         if (!libLoaded) {
             try {
-                NativeUtils.loadLibraryFromJar("/any64/pathfinderjava.dll");
-            } catch (Exception e) {
+                String
+                        env = System.getProperty("os.name", "generic").toLowerCase(),
+                        path = "/";
+                boolean is64 = System.getProperty("os.arch", "32").contains("64");
+
+                if (env.contains("win")) { // Windows environment
+                    path += "windows/";
+                    path += "x86" + (is64 ? "-64" : "") + "/";
+                    NativeUtils.loadLibraryFromJar(path + "pathfinderjava.dll");
+                } else if (env.contains("mac")) { // macOS environment
+                    path += "osx/";
+                    path += "x86" + (is64 ? "-64" : "") + "/";
+                    NativeUtils.loadLibraryFromJar(path + "libpathfinderjava.dylib");
+                } else if (env.contains("nux")) { // Unix environment
+                    path += "linux/";
+                    path += "x86" + (is64 ? "-64" : "") + "/";
+                    NativeUtils.loadLibraryFromJar(path + "libpathfinderjava.so");
+                } else {
+                    System.out.println("WARNING: pathfinderjava NOT LOADED! On OS " + env);
+                }
+            } catch (IOException e) {
                 e.printStackTrace();
             }
             libLoaded = true;
